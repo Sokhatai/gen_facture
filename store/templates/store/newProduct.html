@@ -1,0 +1,13 @@
+{% comment %} Permet de créer un produit (mis dans un fichier à part pour pouvoir l'importer sur plusieurs page) {% endcomment %}
+
+
+<form action="{{ action }}" method="POST">
+    {% csrf_token %}
+    <h2>Créer un article</h2>
+    <input type="text" placeholder='nom' name="productName" />
+    <input type="number" placeholder='prix' step="0.01" min="0" name="price" />
+    <input type="date" placeholder='date de peremption' name="peremptionDate"/>
+    <input type="number" placeholder='quantity' step= "1" min="0" name="quantity" />
+    <input type="text" placeholder='description' name="description" />
+    <input type="submit" value="create" />
+</form>

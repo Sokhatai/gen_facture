@@ -6,6 +6,21 @@ from store.models import Cart, Order, Product
 
 # Create your views here.
 def index(request):
+
+    if request.method == 'POST':
+        productName = request.POST.get('productName') 
+        price = request.POST.get('price')
+        quantity = request.POST.get('quantity')
+        peremption_date = request.POST.get('peremptionDate')
+        description = request.POST.get('description')
+        Product.objects.create(name = productName,
+                                slug = productName.lower(),
+                                price = price, 
+                                quantity = quantity, 
+                                peremption_date = peremption_date, 
+                                description = description)
+
+
     products = Product.objects.all()
 
 

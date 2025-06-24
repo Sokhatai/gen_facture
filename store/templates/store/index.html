@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div>{% include 'store\newProduct.html' with action='/' %} </div> 
+
+
 
 {% for product in products %}
 
