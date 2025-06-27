@@ -9,7 +9,7 @@
 
     <h2>{{product.name}}</h2>
     <h2>{{product.price}}€</h2>
-    <a href="{{ product.get_absolute_url }}">voir l'article</a>
+    <a href="product/{{ product.id }}">voir l'article</a>
     <hr>
 {% endfor %}
 

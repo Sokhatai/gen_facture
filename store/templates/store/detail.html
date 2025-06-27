@@ -13,6 +13,10 @@
     <a href="{% url "add-to-cart" product.slug %}">
         Ajouter dans le panier
     </a>
+
+    <a href="{% url "delete-product" product.slug %}">
+        supprimer l'article
+    </a>
 </p>
 
 {% endif %}

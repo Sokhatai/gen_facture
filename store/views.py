@@ -26,13 +26,13 @@ def index(request):
 
     return render(request, 'store/index.html', context={"products": products})
 
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug)
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
     return render(request, 'store/detail.html', context={"product": product})
 
-def add_to_cart(request, slug):
+def add_to_cart(request, id):
     user = request.user
-    product = get_object_or_404(Product, slug=slug)
+    product = get_object_or_404(Product, id=id)
     cart, _ = Cart.objects.get_or_create(user=user) # _ variables qu'on utilisera pas (convention) (sera à 1 si le Cart est créé)
     order, created = Order.objects.get_or_create(user=user,
                                                  ordered=False,
@@ -45,7 +45,7 @@ def add_to_cart(request, slug):
         order.quantity += 1
         order.save()
 
-    return redirect(reverse("product", kwargs={"slug": slug}))
+    return redirect(reverse("product", kwargs={"id": id}))
 
 def cart(request):
     cart = get_object_or_404(Cart, user=request.user)
@@ -60,3 +60,10 @@ def delete_cart(request):
 
 def confirm_cart(request):
     ...
+
+
+def delete_product(request, id):
+    if product := get_object_or_404(Product, id=id):
+        product.delete()
+
+    return redirect('index')
