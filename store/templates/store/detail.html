@@ -5,6 +5,7 @@
 <h2>{{product.name}}</h2>
 <h3>{{product.price}}</h3>
 <p>{{product.description}}</p>
+<p>date de peremption {{product.peremption_date}}</p>
 <p>{{product.quantity}} en stock</p>
 
 {% if user.is_authenticated %}
@@ -15,7 +16,11 @@
     </a>
 
     <a href="{% url "delete-product" product.slug %}">
-        supprimer l'article
+        Supprimer l'article
+    </a>
+
+    <a href="modify/">
+        Modifier l'article
     </a>
 </p>
 

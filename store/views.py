@@ -1,3 +1,4 @@
+from math import prod
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
@@ -67,3 +68,19 @@ def delete_product(request, id):
         product.delete()
 
     return redirect('index')
+
+
+def modify_product(request, id):
+    product = get_object_or_404(Product, id=id)
+
+
+    if request.method == 'POST':
+        product.name = request.POST.get('productName') 
+        product.price = request.POST.get('price')
+        product.quantity = request.POST.get('quantity')
+        product.peremption_date = request.POST.get('peremptionDate')
+        product.description = request.POST.get('description')
+        product.save()
+        return redirect(reverse("product", kwargs={"id": id}))
+
+    return render(request, 'store/modifyProduct.html', context={"product": product})

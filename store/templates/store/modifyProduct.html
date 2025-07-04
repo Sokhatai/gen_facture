@@ -1,0 +1,13 @@
+{% comment %} Permet de Modifier un produit (mis dans un fichier à part pour pouvoir l'importer sur plusieurs page) {% endcomment %}
+
+
+<form action="{{ action }}" method="POST">
+    {% csrf_token %}
+    <h2>Modifier l'article </h2>
+    <p>nom </p> <input type="text" placeholder={{ product.name }} name="productName" value={{ product.name }}/>
+    <p>prix </p> <input type="number" placeholder={{ product.price }} step="0.01" min="0" name="price" value={{ product.price }}/>
+    <p>date de péremption </p> <input type="date" placeholder={{ product.peremption_date }} name="peremptionDate" value={{ product.peremption_date }}/>
+    <p>quantité en stock </p> <input type="number" placeholder={{ product.quantity }} step= "1" min="0" name="quantity" value={{ product.quantity }} />
+    <p>Description de l'article </p> <input type="text" placeholder={{ product.description }} name="description" value={{ product.description }} />
+    <input type="submit" value="modify" />
+</form>
